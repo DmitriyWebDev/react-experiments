@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {Route, Link} from "react-router-dom"
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import PageMain from './components/pages/PageMain'
+import PageClients from './components/pages/PageClients'
+import PageClientDetail from './components/pages/PageClientDetail'
+import PageClientParcels from './components/pages/PageClientParcels'
+import PageParcelDetail from './components/pages/PageParcelDetail'
+
+class App extends React.Component {
+    render() {
+        return (
+
+            <div>
+                <ul>
+                    <li>
+                        <Link to="/">Главная страница</Link>
+                    </li>
+                    <li>
+                        <Link to="/clients">Клиенты</Link>
+                    </li>
+                </ul>
+
+                <hr/>
+
+                <Route exact path="/" component={PageMain}/>
+                <Route exact path="/clients" component={PageClients}/>
+                <Route exact path="/clients/:clientId" component={PageClientDetail}/>
+                <Route exact path="/clients/:clientId/parcels" component={PageClientParcels}/>
+                <Route exact path="/parcels/:parcelId" component={PageParcelDetail}/>
+            </div>
+        )
+    }
 }
 
-export default App;
+export default App
