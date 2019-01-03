@@ -14,8 +14,10 @@ class ClientsList extends React.Component {
     }
 
     render() {
-        const {clientsUrl, clientsList} = this.props
+        const {clientsUrl, clientsList, clientsLoaded} = this.props
         // console.log(clientsList)
+
+        if (!clientsLoaded) return 'Loading...'
 
         const clientsLinks = clientsList.map(function (item, index, arr) {
             const {id, name} = item

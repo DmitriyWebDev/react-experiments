@@ -3,9 +3,9 @@ import { Record, Map } from 'immutable'
 
 // Actions
 const LOAD   = 'my-app/clients/LOAD';
-const CREATE = 'my-app/clients/CREATE';
-const UPDATE = 'my-app/clients/UPDATE';
-const REMOVE = 'my-app/clients/REMOVE';
+// const CREATE = 'my-app/clients/CREATE';
+// const UPDATE = 'my-app/clients/UPDATE';
+// const REMOVE = 'my-app/clients/REMOVE';
 
 // State
 const ClientRecord = Record({

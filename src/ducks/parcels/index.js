@@ -1,25 +1,21 @@
 import { Record, Map } from 'immutable'
 
 // Actions
-const LOAD   = 'my-app/clients/LOAD';
-const CREATE = 'my-app/clients/CREATE';
-const UPDATE = 'my-app/clients/UPDATE';
-const REMOVE = 'my-app/clients/REMOVE';
+const ADD    = 'my-app/parcels/ADD'
+// const EDIT   = 'my-app/parcels/EDIT'
+// const REMOVE = 'my-app/parcels/REMOVE'
 
 // State
-const ClientRecord = Record({
-    address: Record({city: '', street: ''}),
-    age: 0,
-    department: '',
-    gender: '',
+const ParcelRecord = Record({
     id: '',
-    name: ''
+    title: '',
+    weight: '',
+    clientId: ''
 })
 
 const ReducerRecord = Record({
-    clientsLoading: false,
-    clientsLoaded: false,
-    clientsMap: Map({})
+    parcelsMap: Map({}),
+    parcelsByClientId: Map({})
 })
 
 // Reducer
@@ -27,8 +23,20 @@ export default function reducer(state = ReducerRecord(), action = {}) {
     const {type, payload} = action
 
     switch (type) {
-        case LOAD : {
+        case ADD : {
+            const {clientId, randomId, title } = payload
+            console.log('Parcels reducer. Add')
+            console.log(action)
+            const newParcel = ParcelRecord({
+                id: randomId,
+                title,
+                weight: '',
+                clientId
+            })
+
             return state
+                .setIn(['parcelsMap', randomId], newParcel)
+                .setIn(['parcelsByClientId', clientId], randomId)
         }
         default: {
             return state
@@ -37,8 +45,12 @@ export default function reducer(state = ReducerRecord(), action = {}) {
 }
 
 // Action Creators
-export function addParcel() {
-    return { type: LOAD };
+export function addParcel(payload) {
+    return {
+        type: ADD,
+        generateId: true,
+        payload: {...payload}
+    }
 }
 
 

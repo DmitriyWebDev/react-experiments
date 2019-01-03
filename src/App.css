@@ -40,3 +40,25 @@
   opacity: 1;
   transition: opacity 250ms ease-in;
 }
+
+/* Form validation styles */
+
+.input_invalid {
+  border: 1px solid red;
+  box-shadow: none;
+}
+
+.field-validation-msg {
+  display: block;
+  color: black;
+}
+
+.field-validation-msg_error {
+  color: red;
+}
+
+.field-validation-msg_success {
+  color: green;
+}
+
+

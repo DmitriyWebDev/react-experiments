@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import {getClientsListFromMap} from './utils'
+import {getListFromMap} from 'common-utils/ducks'
 
 const getClientsMap = (state) => state.clientsMap
 
@@ -7,6 +7,6 @@ export const getClientsList = createSelector(
     getClientsMap,
     (clientsMap) => {
         console.log('---', 'recomputing clients')
-        return getClientsListFromMap(clientsMap)
+        return getListFromMap(clientsMap)
     }
 )

@@ -1,0 +1,27 @@
+@import 'src/styles-common/general';
+
+.parcels {
+  font-family: $font-family-main;
+  display: block;
+  background: purple;
+
+  &__content {
+    background: #61dafb;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  &__list-wrap {
+    display: block;
+    width: 50%;
+  }
+
+  &__form-wrap {
+    display: block;
+    width: 50%;
+    border-left: 1px solid black;
+  }
+
+}
