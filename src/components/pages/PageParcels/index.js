@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './page.module.scss'
 import FormAddParcel from '../../FormAddParcel'
+import FormWithFormic from '../../FormAddParcel/withFormik'
 import ParcelsList from '../../ParcelsList'
 
 class PageParcels extends React.Component {
@@ -12,10 +13,11 @@ class PageParcels extends React.Component {
                         <ParcelsList/>
                     </div>
                     <div className={styles["parcels__form-wrap"]}>
-                        <FormAddParcel
-
-                        >
-                        </FormAddParcel>
+                        <FormWithFormic />
+                        <hr/>
+                        <hr/>
+                        <hr/>
+                        <FormAddParcel />
                     </div>
                 </div>
             </div>
