@@ -4,8 +4,8 @@ import { getValidFloatString, checkFloatStringIsInvalid } from 'common-utils/pre
 import { loadClients } from '../../ducks/clients'
 import { addParcel } from '../../ducks/parcels'
 import { toast } from 'react-toastify'
-import { getClientsOptionsList } from "./selector"
-import classNames from "classnames"
+import { getClientsOptionsList } from './selector'
+import classNames from 'classnames'
 
 
 class FormAddParcel extends React.Component {
