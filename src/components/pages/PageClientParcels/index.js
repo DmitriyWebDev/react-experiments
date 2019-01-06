@@ -6,7 +6,7 @@ class PageClientParcels extends React.Component {
         const {match} = this.props
         console.log(match)
         return(
-            <div>
+            <div className={'page_animated'}>
                 Parcels list of client
 
                 <br/>

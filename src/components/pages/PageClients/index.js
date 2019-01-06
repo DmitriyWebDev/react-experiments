@@ -5,7 +5,7 @@ class PageClients extends React.Component {
     render() {
         const {match} = this.props
         return(
-            <div>
+            <div className={'page_animated'}>
                 <ClientsList clientsUrl={match.url}/>
             </div>
         )

@@ -5,7 +5,7 @@ class PageParcelDetail extends React.Component {
         const {match} = this.props
         const parcelId = match.params.parcelId
         return(
-            <div>
+            <div className={'page_animated'}>
                 Parcel № "{parcelId}"
             </div>
         )

@@ -6,7 +6,7 @@ class PageClientDetail extends React.Component {
         const {match} = this.props
         const clientId = match.params.clientId
         return(
-            <div>
+            <div className={'page_animated'}>
                 Client № {clientId}
                 <br/>
                 <Link to={`${match.url}/parcels`}>Show client parcels</Link>

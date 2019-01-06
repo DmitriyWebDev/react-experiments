@@ -21,20 +21,22 @@ class PageParcels extends React.Component {
     }
     render() {
         return(
-            <div className={styles["parcels"]}>
-                <div className={styles["parcels__content"]}>
-                    <div className={styles["parcels__list-wrap"]}>
-                        <ParcelsList/>
-                    </div>
-                    <div className={styles["parcels__form-wrap"]}>
-                        <FormWithReduxForm
-                            onSubmit={this.handleSubmitParcelFormRedux}
-                            initialValues={{parcelType: '1'}}
-                        />
-                        <hr/>
-                        <hr/>
-                        <hr/>
-                        <FormAddParcel />
+            <div className={'page_animated'}>
+                <div className={styles["parcels"]}>
+                    <div className={styles["parcels__content"]}>
+                        <div className={styles["parcels__list-wrap"]}>
+                            <ParcelsList/>
+                        </div>
+                        <div className={styles["parcels__form-wrap"]}>
+                            <FormWithReduxForm
+                                onSubmit={this.handleSubmitParcelFormRedux}
+                                initialValues={{parcelType: '1'}}
+                            />
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <FormAddParcel />
+                        </div>
                     </div>
                 </div>
             </div>
