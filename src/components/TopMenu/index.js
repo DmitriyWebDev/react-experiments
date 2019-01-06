@@ -1,0 +1,71 @@
+import React from 'react'
+import {Link} from 'react-router-dom'
+import classNames from 'classnames'
+
+class TopMenu extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            fixedPosition: false
+        }
+        this.getScrollPosition = this.getScrollPosition.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll)
+    }
+
+    handleScroll() {
+        const {fixedPosition} = this.state
+        const scrolled = this.getScrollPosition()
+        if (scrolled >= 100 && !fixedPosition) {
+            console.log('set menu fixedPosition true')
+            this.setState({
+                fixedPosition: true
+            })
+        } else if (scrolled < 100 && fixedPosition) {
+            console.log('set menu fixedPosition false')
+            this.setState({
+                fixedPosition: false
+            })
+        }
+    }
+
+    getScrollPosition() {
+        return window.pageYOffset || document.documentElement.scrollTop
+    }
+
+    render() {
+        const {fixedPosition} = this.state
+        const headerClass = classNames({
+            header: true,
+            header_fixed: fixedPosition
+        });
+        return(
+            <div className={headerClass}>
+                <ul>
+                    <li>
+                        <Link to="/">Главная страница</Link>
+                    </li>
+                    <li>
+                        <Link to="/clients">Клиенты</Link>
+                    </li>
+                    <li>
+                        <Link to="/parcels">Посылки</Link>
+                    </li>
+                    <li>
+                        <Link to="/long-page">Длинная страница</Link>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+}
+
+export default TopMenu

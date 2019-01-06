@@ -1,11 +1,13 @@
 import React from 'react'
 import './App.css'
+import TopMenu from './components/TopMenu'
 import PageMain from './components/pages/PageMain'
 import PageClients from './components/pages/PageClients'
 import PageClientDetail from './components/pages/PageClientDetail'
 import PageClientParcels from './components/pages/PageClientParcels'
 import PageParcels from './components/pages/PageParcels'
 import PageParcelDetail from './components/pages/PageParcelDetail'
+import PageLongContent from './components/pages/PageLongContent'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {TransitionGroup, CSSTransition} from "react-transition-group";
@@ -13,40 +15,23 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    Redirect
+    Link
 } from "react-router-dom";
 
 class App extends React.Component {
     render() {
         return (
-
             <div>
                 <Router>
                     <Route
                         render={({ location }) => {
-                            console.log("Current location ---")
-                            console.log(location)
                             let animationClass = 'fade'
                             if(location.pathname === '/clients') {
-                                console.log("Clients@")
                                 animationClass = 'clients-page-animation'
                             }
                             return (
                                 <div>
-                                    <div className={'header'}>
-                                        <ul>
-                                            <li>
-                                                <Link to="/">Главная страница</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/clients">Клиенты</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/parcels">Посылки</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <TopMenu />
 
                                     <div className={'pages-wrapper'}>
                                         <TransitionGroup>
@@ -67,6 +52,7 @@ class App extends React.Component {
                                                     <Route exact path="/clients/:clientId/parcels" component={PageClientParcels}/>
                                                     <Route exact path="/parcels" component={PageParcels}/>
                                                     <Route exact path="/parcels/:parcelId" component={PageParcelDetail}/>
+                                                    <Route exact path="/long-page" component={PageLongContent}/>
                                                     <Route render={() => <div>Not Found</div>}/>
                                                 </Switch>
                                             </CSSTransition>
