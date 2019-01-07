@@ -24,12 +24,12 @@ class TopMenu extends React.Component {
     handleScroll() {
         const {fixedPosition} = this.state
         const scrolled = this.getScrollPosition()
-        if (scrolled >= 100 && !fixedPosition) {
+        if (scrolled > 0 && !fixedPosition) {
             console.log('set menu fixedPosition true')
             this.setState({
                 fixedPosition: true
             })
-        } else if (scrolled < 100 && fixedPosition) {
+        } else if (scrolled === 0 && fixedPosition) {
             console.log('set menu fixedPosition false')
             this.setState({
                 fixedPosition: false

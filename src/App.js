@@ -14,8 +14,7 @@ import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 class App extends React.Component {

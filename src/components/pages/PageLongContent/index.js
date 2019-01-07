@@ -8,6 +8,17 @@ class PageLongContent extends React.Component {
         if(setComponentNameForScrollRestore) {
             setComponentNameForScrollRestore('PageLongContent')
         }
+
+        let userComeFromMainPage = false
+        try {
+            userComeFromMainPage = this.props.location.state.fromMainPage
+        } catch (e) {}
+
+        if (userComeFromMainPage) {
+            setTimeout(() => {
+                alert('You came from main page, after button clicking')
+            }, 300)
+        }
     }
 
     render() {

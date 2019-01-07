@@ -59,10 +59,7 @@ const restoreScrollPosition = (WrappedComponent) => {
         saveScrollPosition(scrolled) {
             const {componentName, storageKeyPrefix} = this.state
             console.log(`saveScrollPosition(${scrolled})`)
-            sessionStorage.clear()
             sessionStorage.setItem(`${storageKeyPrefix}_${componentName}`, scrolled)
-            localStorage.clear()
-            localStorage.setItem(`${storageKeyPrefix}_${componentName}`, scrolled)
         }
 
         getScrollPosition() {
