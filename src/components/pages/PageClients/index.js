@@ -1,5 +1,5 @@
 import React from 'react'
-import ClientsList from '../../ClientsList'
+import ClientsList from '../../ClientsList/withReactMotion'
 
 class PageClients extends React.Component {
     render() {
