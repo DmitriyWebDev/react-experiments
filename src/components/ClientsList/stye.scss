@@ -1,0 +1,29 @@
+// base - animated-client
+
+.animated-client-appear {
+  transform: translateX(-100%) ;
+  opacity: 0;
+}
+.animated-client-appear-active {
+  transform: translateX(0) ;
+  opacity: 1;
+  transition: all 400ms;
+}
+
+.animated-client-enter {
+  opacity: 0.01;
+}
+.animated-client-enter-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}
+
+.animated-client-exit {
+  opacity: 1;
+}
+.animated-client-exit-active {
+  opacity: 0.01;
+  transition: opacity 400ms ease-in;
+}
+
+

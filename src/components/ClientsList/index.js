@@ -1,14 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {loadClients} from '../../ducks/clients'
 import {getClientsList} from '../../ducks/clients/selector.js'
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group'
+import styles from './component.module.scss'
+import './stye.scss'
 
 class ClientsList extends React.Component {
 
     componentDidMount() {
         const {clientsLoading, clientsLoaded, loadClients} = this.props
-        if( !clientsLoading && !clientsLoaded ) {
+        if (!clientsLoading && !clientsLoaded) {
             loadClients()
         }
     }
@@ -21,18 +27,32 @@ class ClientsList extends React.Component {
 
         const clientsLinks = clientsList.map(function (item, index, arr) {
             const {id, name} = item
-            return  <li key={id}>
-                        <Link to={`${clientsUrl}/${id}`}>{name}</Link>
-                    </li>
+            return  <CSSTransition
+                    key={id}
+                    timeout={400}
+                    classNames="animated-client"
+                    appear
+                    >
+                        <li key={id}>
+                            <Link
+                                className={styles["clints-list__item"]}
+                                to={`${clientsUrl}/${id}`}>{name}
+                            </Link>
+                        </li>
+                    </CSSTransition>
+
         })
 
-        return(
+        return (
             <div>
                 Clients list:
 
-                <ul>
-                    {clientsLinks}
+                <ul className={styles["clints-list"]}>
+                    <TransitionGroup>
+                        {clientsLinks}
+                    </TransitionGroup>
                 </ul>
+
             </div>
         )
     }

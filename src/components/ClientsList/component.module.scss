@@ -1,0 +1,24 @@
+@import 'src/styles-common/general';
+
+.clints-list {
+  font-family: $font-family-main;
+  display: block;
+
+  li {
+    display: block;
+  }
+
+  &__item {
+    display: block;
+    width: 300px;
+    vertical-align: top;
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+    margin: 0 0 2px 0;
+    background: #4cd964;
+    text-decoration: none;
+  }
+
+}
+

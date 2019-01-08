@@ -1,4 +1,4 @@
-import { Record, Map } from 'immutable'
+import { Record, Map, List } from 'immutable'
 
 // Actions
 const ADD    = 'my-app/parcels/ADD'
@@ -25,8 +25,6 @@ export default function reducer(state = ReducerRecord(), action = {}) {
     switch (type) {
         case ADD : {
             const {clientId, randomId, title } = payload
-            console.log('Parcels reducer. Add')
-            console.log(action)
             const newParcel = ParcelRecord({
                 id: randomId,
                 title,
@@ -34,9 +32,16 @@ export default function reducer(state = ReducerRecord(), action = {}) {
                 clientId
             })
 
+            let clientNewParcels = List([randomId])
+            const clientCurrentParcels = state.parcelsByClientId.get(clientId)
+
+            if (clientCurrentParcels) {
+                clientNewParcels = clientCurrentParcels.push(randomId)
+            }
+
             return state
                 .setIn(['parcelsMap', randomId], newParcel)
-                .setIn(['parcelsByClientId', clientId], randomId)
+                .setIn(['parcelsByClientId', clientId], clientNewParcels)
         }
         default: {
             return state
