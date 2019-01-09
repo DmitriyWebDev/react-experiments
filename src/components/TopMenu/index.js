@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import classNames from 'classnames'
+import LanguageSwitcher from '../LanguageSwitcher'
+import Translator from '../Translator'
 
 class TopMenu extends React.Component {
     constructor(props) {
@@ -49,20 +51,41 @@ class TopMenu extends React.Component {
         });
         return(
             <div className={headerClass}>
+
                 <ul>
                     <li>
-                        <Link to="/">Главная страница</Link>
+                        <Link to="/">
+                            <Translator>
+                                Главная страница
+                            </Translator>
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/clients">Клиенты</Link>
+                        <Link to="/clients">
+                            <Translator>
+                                Клиенты
+                            </Translator>
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/parcels">Посылки</Link>
+                        <Link to="/parcels">
+                            <Translator>
+                                Посылки
+                            </Translator>
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/long-page">Длинная страница</Link>
+                        <Link to="/long-page">
+                            <Translator>
+                                Длинная страница
+                            </Translator>
+                        </Link>
                     </li>
                 </ul>
+                <div className={'header__lang-switcher'}>
+                    <LanguageSwitcher />
+                </div>
+
             </div>
         )
     }
