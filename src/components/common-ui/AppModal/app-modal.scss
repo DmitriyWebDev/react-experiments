@@ -16,22 +16,6 @@
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 
-  &__overlay {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    left: 0;
-    top: 0;
-    z-index: 20;
-
-    -webkit-animation-duration: 400ms;
-    animation-duration: 400ms;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-
   &__window {
     display: block;
     position: fixed;
@@ -56,22 +40,31 @@
       position: relative;
       z-index: 30;
       background-color: #fefefe;
-      margin: 100px auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      height: 1400px;
+      margin: 30px auto;
+      padding: 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+      width: 600px;
     }
+  }
 
-    -webkit-animation-duration: 1000ms;
-    animation-duration: 1000ms;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  &__header {
+    border: 1px solid black;
+    padding: 20px;
+  }
+
+  &__content {
+    border: 1px solid yellow;
+    padding: 20px;
+  }
+
+  &__footer {
+    border: 1px solid green;
+    padding: 20px;
   }
 
 }
 
-//////////////////////////////////
+// Animations classes
 
 .app-modal__window-enter {
   transform: translateY(-20%);
@@ -83,16 +76,12 @@
 
 .app-modal__window-exit {
   transform: translateY(0);
-  opacity: 1;
-  overflow: hidden;
+  transition: all 100ms;
 }
 .app-modal__window-exit-active {
-  transform: translateY(-70%);
-  opacity: 0;
+  transform: translateY(-20%);
   transition: all 100ms;
-  overflow: hidden;
 }
-
 
 ////////////////////////////////
 

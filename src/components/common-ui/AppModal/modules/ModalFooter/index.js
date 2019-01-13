@@ -5,7 +5,7 @@ class ModalFooter extends React.Component {
         const {children} = this.props
 
         return(
-            <div>
+            <div className={'app-modal__footer'}>
                 {children}
             </div>
         )

@@ -1,4 +1,6 @@
 import React from 'react'
+import ComponentForTestModalOne from '../../ComponentForTestModalOne'
+import ComponentForTestModalTwo from '../../ComponentForTestModalTwo'
 
 class PageMain extends React.Component {
     constructor(props) {
@@ -16,9 +18,16 @@ class PageMain extends React.Component {
                 Главная страница (контент)
 
                 <hr/>
+                <ComponentForTestModalOne />
+
+                <hr/>
+                <ComponentForTestModalTwo />
+
+                <hr/>
                 <div onClick={this.goToLongPage}>
                     Перейти на Long page
                 </div>
+
             </div>
         )
     }

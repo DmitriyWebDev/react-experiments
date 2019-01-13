@@ -1,15 +1,15 @@
 import React from 'react'
 
-class ModalHeader extends React.Component {
+class ModalBody extends React.Component {
     render() {
         const {children} = this.props
 
         return(
-            <div className={'app-modal__header'}>
+            <div className={'app-modal__content'}>
                 {children}
             </div>
         )
     }
 }
 
-export default ModalHeader
+export default ModalBody

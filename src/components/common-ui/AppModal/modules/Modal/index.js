@@ -1,41 +1,66 @@
 import React from 'react'
-import { getScrollbarWidth, stopEventPropagation } from 'common-utils'
+import ReactDOM from 'react-dom'
+import ModalContent from '../ModalContent'
+import '../../app-modal.scss'
+import {
+    CSSTransition
+} from 'react-transition-group'
+
 
 class Modal extends React.Component {
     constructor(props) {
-        super(props);
-        this.preventClose = this.preventClose.bind(this)
+        super(props)
+        this.state = {
+            show: false
+        }
     }
 
-    componentDidMount() {
-        const body = document.body
-        body.style.overflow = 'hidden'
-        body.style.paddingRight = `${getScrollbarWidth()}px`
-    }
+    static getDerivedStateFromProps(nextProps) {
+        const { modalKey, modalState } = nextProps
 
-    componentWillUnmount() {
-        const body = document.body
-        setTimeout(() => {
-            body.style.overflow = ''
-            body.style.paddingRight = ''
-        }, 200)
-    }
+        if (modalKey === modalState.modalKey) {
+            return { show: modalState.showModal }
+        }
 
-    preventClose(e) {
-        console.log('e.stopPropagation()')
-        stopEventPropagation(e)
+        return { show: false }
     }
 
     render() {
+        const {show} = this.state
         const {children, closeModal} = this.props
 
-        return(
-            <div className={'app-modal__window-inner-wrap'} onClick={closeModal}>
-                <div className={'app-modal__window-inner'} onClick={this.preventClose}>
-                    {children}
-                </div>
-            </div>
-        )
+        return ReactDOM.createPortal(
+            <CSSTransition
+                in={show}
+                key={'app-modal'}
+                timeout={200}
+                classNames="app-modal"
+                appear
+                unmountOnExit
+            >
+                {state => (
+                    <div className={'app-modal'}>
+                        <div className={'app-modal__window'}>
+                            <CSSTransition
+                                in={state === 'entered'}
+                                key={'app-modal__window'}
+                                timeout={100}
+                                classNames="app-modal__window"
+                                appear
+                                unmountOnExit
+                            >
+                                <ModalContent closeModal={closeModal}>
+                                    {children}
+                                </ModalContent>
+                            </CSSTransition>
+                        </div>
+
+                    </div>
+                )}
+
+            </CSSTransition>,
+            document.body
+        );
     }
 }
 
