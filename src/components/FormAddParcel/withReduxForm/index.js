@@ -213,6 +213,7 @@ Form = connect(
 )(Form)
 
 export default reduxForm({
+    destroyOnUnmount: false,
     form: 'addParcel', // a unique identifier for this form
     validate, // <--- validation function given to redux-form
     warn // <--- warning function given to redux-form
