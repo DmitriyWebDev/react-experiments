@@ -1,0 +1,113 @@
+@import 'src/styles-common/general';
+
+.app-modal {
+  display: block;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background: rgba(0, 0, 0, 0.5);
+
+  -webkit-animation-duration: 400ms;
+  animation-duration: 400ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  &__overlay {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+    z-index: 20;
+
+    -webkit-animation-duration: 400ms;
+    animation-duration: 400ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  &__window {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    &-inner-wrap {
+      display: block;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      overflow: auto;
+      z-index: 30;
+    }
+
+    &-inner {
+      display: block;
+      position: relative;
+      z-index: 30;
+      background-color: #fefefe;
+      margin: 100px auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      height: 1400px;
+    }
+
+    -webkit-animation-duration: 1000ms;
+    animation-duration: 1000ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+}
+
+//////////////////////////////////
+
+.app-modal__window-enter {
+  transform: translateY(-20%);
+}
+.app-modal__window-enter-active {
+  transform: translateY(0);
+  transition: all 100ms;
+}
+
+.app-modal__window-exit {
+  transform: translateY(0);
+  opacity: 1;
+  overflow: hidden;
+}
+.app-modal__window-exit-active {
+  transform: translateY(-70%);
+  opacity: 0;
+  transition: all 100ms;
+  overflow: hidden;
+}
+
+
+////////////////////////////////
+
+.app-modal-enter {
+  opacity: 0.01;
+}
+.app-modal-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.app-modal-exit {
+  opacity: 1;
+}
+.app-modal-exit-active {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
+}

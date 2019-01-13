@@ -68,3 +68,42 @@ export function getDeclencionNounOfNumeric (number, titles) {
     const cases = [2, 0, 1, 1, 1, 2]
     return titles[ (number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5] ]
 }
+
+/**
+ * Returns (Number) browser scrollbar width in pixels
+ */
+export function getScrollbarWidth () {
+    const outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    const widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = "scroll";
+
+    // add innerdiv
+    const inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+
+    const widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
+}
+
+/**
+ * Prevents browser and synthetic event bubbling
+ * @param event {object} - any browser or synthetic event
+ */
+export function stopEventPropagation (event) {
+    event.stopPropagation()
+    if( event.nativeEvent ) {
+        event.nativeEvent.stopImmediatePropagation()
+    }
+}

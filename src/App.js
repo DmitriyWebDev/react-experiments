@@ -8,6 +8,7 @@ import PageClientParcels from './components/pages/PageClientParcels'
 import PageParcels from './components/pages/PageParcels'
 import PageParcelDetail from './components/pages/PageParcelDetail'
 import PageLongContent from './components/pages/PageLongContent'
+import AppModal from './components/common-ui/AppModal'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {TransitionGroup, CSSTransition} from 'react-transition-group'
@@ -30,12 +31,21 @@ class App extends React.Component {
 
         const defaultLang = locales[0]
         this.state = {
+            modalIsOpen: false,
             currentLang: defaultLang,
             locales: locales,
             vocabulary: vocabulary[`${defaultLang}`],
             changeLanguage: this.changeLanguage
         };
 
+        this.toggleModal = this.toggleModal.bind(this)
+
+    }
+
+    toggleModal() {
+        this.setState({
+            modalIsOpen: !this.state.modalIsOpen
+        })
     }
 
     render() {
@@ -50,6 +60,14 @@ class App extends React.Component {
                             }
                             return (
                                 <div>
+                                    <button onClick={this.toggleModal}>
+                                        Toggle modal
+                                    </button>
+
+                                    <AppModal isOpen={this.state.modalIsOpen} closeModal={this.toggleModal}>
+                                        Happy modal 7
+                                    </AppModal>
+
                                     <TopMenu/>
 
                                     <div className={'pages-wrapper'}>
