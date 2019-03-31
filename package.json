@@ -9,6 +9,7 @@
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
     "lodash.range": "^3.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.0",

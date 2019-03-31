@@ -1,0 +1,22 @@
+$textShower: '.textShower';
+
+#{$textShower} {
+  display: block;
+  width: 100%;
+  cursor: default;
+
+  &__content {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: white;
+  }
+}
+
+#{$textShower}:hover {
+  #{$textShower}__content {
+    white-space: initial;
+  }
+}

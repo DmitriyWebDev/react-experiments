@@ -1,0 +1,57 @@
+$textListShower: '.textListShower';
+
+#{$textListShower} {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+
+  &__content {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: white;
+  }
+
+  &__list {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    white-space: normal;
+    position: absolute;
+    left: -50000px;
+    top: 0;
+    border: 1px solid red;
+    background: white;
+  }
+}
+
+#{$textListShower}#{$textListShower}_singleLine:hover {
+  cursor: default;
+  #{$textListShower}__content {
+    white-space: initial;
+  }
+}
+
+// Show list styles
+
+#{$textListShower}#{$textListShower}_isOpen {
+  #{$textListShower}__list {
+    left: 0;
+    z-index: 10;
+  }
+}
+
+#{$textListShower}#{$textListShower}_dir_top {
+  #{$textListShower}__list {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+
+
+
