@@ -3,6 +3,7 @@ import ComponentForTestModalOne from '../../ComponentForTestModalOne'
 import ComponentForTestModalTwo from '../../ComponentForTestModalTwo'
 import TextShower from '../../common-ui/TextShower'
 import TextListShower from '../../common-ui/TextListShower'
+import WebSocketListener from '../../WebSocketListener';
 
 class PageMain extends React.Component {
     constructor(props) {
@@ -64,7 +65,9 @@ class PageMain extends React.Component {
                     ]}/>
                 </div>
 
+                <hr/>
 
+                <WebSocketListener />
 
 
 
