@@ -55,10 +55,12 @@
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "husky": "^2.2.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
+    "lint-staged": "^8.1.6",
     "mini-css-extract-plugin": "0.4.3",
     "node-sass": "^4.11.0",
     "nodemon": "^1.19.0",
@@ -90,11 +92,26 @@
     "lint-fix": "eslint --fix src"
   },
   "eslintConfig": {
-    "plugins": ["prettier"],
+    "plugins": [
+      "prettier"
+    ],
     "extends": "react-app",
     "rules": {
-      "prettier/prettier": ["error"]
+      "prettier/prettier": [
+        "error"
+      ]
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint-fix",
+      "git add"
+    ]
   },
   "browserslist": [
     ">0.2%",
