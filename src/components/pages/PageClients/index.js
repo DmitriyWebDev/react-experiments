@@ -1,15 +1,15 @@
-import React from 'react'
-import ClientsList from '../../ClientsList/withReactMotion'
+import React from "react";
+import ClientsList from "../../ClientsList/withReactMotion";
 
 class PageClients extends React.Component {
-    render() {
-        const {match} = this.props
-        return(
-            <div className={'page_animated'}>
-                <ClientsList clientsUrl={match.url}/>
-            </div>
-        )
-    }
+  render() {
+    const { match } = this.props;
+    return (
+      <div className={"page_animated"}>
+        <ClientsList clientsUrl={match.url} />
+      </div>
+    );
+  }
 }
 
-export default PageClients
+export default PageClients;

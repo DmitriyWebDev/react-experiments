@@ -1,37 +1,35 @@
-import React from 'react'
-import classNames from "classnames"
-import InputFeedback from '../InputFeedback'
+import React from "react";
+import classNames from "classnames";
+import InputFeedback from "../InputFeedback";
 
 // Radio group
-const RadioButtonGroup = (
+const RadioButtonGroup = ({
+  value,
+  error,
+  touched,
+  id,
+  label,
+  className,
+  children
+}) => {
+  const classes = classNames(
+    "input-field",
     {
-        value,
-        error,
-        touched,
-        id,
-        label,
-        className,
-        children
-    }
-) => {
-    const classes = classNames(
-        "input-field",
-        {
-            "is-success": value || (!error && touched), // handle prefilled or user-filled
-            "is-error": !!error && touched
-        },
-        className
-    );
+      "is-success": value || (!error && touched), // handle prefilled or user-filled
+      "is-error": !!error && touched
+    },
+    className
+  );
 
-    return (
-        <div className={classes}>
-            <fieldset>
-                <legend>{label}</legend>
-                {children}
-                {touched && <InputFeedback error={error}/>}
-            </fieldset>
-        </div>
-    );
+  return (
+    <div className={classes}>
+      <fieldset>
+        <legend>{label}</legend>
+        {children}
+        {touched && <InputFeedback error={error} />}
+      </fieldset>
+    </div>
+  );
 };
 
-export default RadioButtonGroup
+export default RadioButtonGroup;
