@@ -63,11 +63,17 @@ export class WebSocketListener extends React.Component {
     const pre = document.createElement("p");
     pre.style.wordWrap = "break-word";
     pre.innerHTML = message;
-    this.outputRef.current.appendChild(pre);
+    if (this.outputRef && this.outputRef.current) {
+      this.outputRef.current.appendChild(pre);
+    }
   }
 
   componentDidMount() {
     this.init();
+  }
+
+  componentWillUnmount() {
+    if (this.websocket) this.websocket.close();
   }
 
   render() {

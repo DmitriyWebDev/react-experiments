@@ -8,6 +8,7 @@ import PageClientParcels from "./components/pages/PageClientParcels";
 import PageParcels from "./components/pages/PageParcels";
 import PageParcelDetail from "./components/pages/PageParcelDetail";
 import PageLongContent from "./components/pages/PageLongContent";
+import PageD3Charts from "./components/pages/PageD3Charts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -55,10 +56,10 @@ class App extends React.Component {
                   <div className={"pages-wrapper"}>
                     <TransitionGroup>
                       {/* no different than other usage of
-                                        CSSTransition, just make sure to pass
-                                        `location` to `Switch` so it can match
-                                        the old location as it animates out
-                                        */}
+                          CSSTransition, just make sure to pass
+                          `location` to `Switch` so it can match
+                          the old location as it animates out
+                      */}
                       <CSSTransition
                         key={location.key}
                         classNames={animationClass}
@@ -95,6 +96,11 @@ class App extends React.Component {
                             exact
                             path="/long-page"
                             component={PageLongContent}
+                          />
+                          <Route
+                            exact
+                            path="/d3-charts"
+                            component={PageD3Charts}
                           />
                           <Route render={() => <div>Not Found</div>} />
                         </Switch>

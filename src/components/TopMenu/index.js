@@ -72,6 +72,11 @@ class TopMenu extends React.Component {
               <Translator>Длинная страница</Translator>
             </Link>
           </li>
+          <li>
+            <Link to="/d3-charts">
+              <Translator>Charts (D3.js)</Translator>
+            </Link>
+          </li>
         </ul>
         <div className={"header__lang-switcher"}>
           <LanguageSwitcher />
