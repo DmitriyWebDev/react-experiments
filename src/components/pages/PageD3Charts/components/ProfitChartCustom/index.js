@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./style.scss";
 import { data } from "./fakeApi";
 import {
+  getRandomId,
   setAnimatedViewToSvgPath,
   getOldDaysChartLines,
   countDaysLeftOffsets,
@@ -13,7 +14,9 @@ class ProfitChartCustom extends React.Component {
   constructor(props) {
     super(props);
 
+    this.instanceSuffix = getRandomId();
     this.rootRef = React.createRef();
+    this.rootSvgRef = React.createRef();
   }
 
   componentDidMount() {
@@ -32,23 +35,29 @@ class ProfitChartCustom extends React.Component {
     const chartWidth = svgWidth - chartInnerOffset * 2;
     const chartHeight = svgHeight - chartInnerOffset * 2;
 
-    // Add root
-    d3.select("#chart")
+    // Dom nodes and selectors
+    const rootChartSvgNode = this.rootSvgRef.current;
+    const chartCanvasId = `chartCanvas_${this.instanceSuffix}`;
+    const chartCanvasContentId = `chartCanvasContent_${this.instanceSuffix}`;
+    const oldDaysChartId = `old-days-chart_${this.instanceSuffix}`;
+
+    // Add
+    d3.select(rootChartSvgNode)
       .append("g")
       .attr("transform", `translate(${chartInnerOffset},${chartInnerOffset})`)
-      .attr("id", "chartCanvas");
+      .attr("id", chartCanvasId);
 
     // Add content area
-    d3.select("#chartCanvas")
+    d3.select(rootChartSvgNode.querySelector(`#${chartCanvasId}`))
       .append("g")
       .attr("transform", `translate(0,${chartHeight})`)
-      .attr("id", "chartCanvasContent");
+      .attr("id", chartCanvasContentId);
 
     // Add current days (vertical lines)
     const linesOffsets = countDaysLeftOffsets(data.days, chartWidth);
 
-    linesOffsets.forEach((item, index, arr) => {
-      d3.select("#chartCanvasContent")
+    linesOffsets.forEach((item, index) => {
+      d3.select(rootChartSvgNode.querySelector(`#${chartCanvasContentId}`))
         .append("line")
         .attr("class", "line-products-count")
         .attr("transform", `translate(${item},0)`)
@@ -58,12 +67,13 @@ class ProfitChartCustom extends React.Component {
     // Add old days (chart)
     const oldDaysChart = getOldDaysChartLines(
       linesOffsets,
-      data.days,
+      data.oldDays,
       chartHeight,
       maxProductsCount
     );
-    d3.select("#chart")
+    d3.select(rootChartSvgNode)
       .append("path")
+      .attr("id", oldDaysChartId)
       .attr("transform", `translate(${chartInnerOffset},${chartInnerOffset})`)
       .attr("fill", "none")
       .attr("stroke", "red")
@@ -71,18 +81,22 @@ class ProfitChartCustom extends React.Component {
     // "M 0,200 L 82,160 L 164,120 L 246,100"
 
     // Set animated view for <path />
-    const path = document.querySelector("#chart path");
-    setAnimatedViewToSvgPath(path);
+    const oldDaysChartPath = rootChartSvgNode.querySelector(
+      `#${oldDaysChartId}`
+    );
+    setAnimatedViewToSvgPath(oldDaysChartPath);
   }
 
   render() {
     return (
       <div
+        key={this.instanceSuffix}
         ref={this.rootRef}
         style={{ width: "900px", height: "400px", margin: "0 auto" }}
       >
         <svg
-          id="chart"
+          ref={this.rootSvgRef}
+          id={`root-svg_${this.instanceSuffix}`}
           viewBox="0 0 900 400"
           xmlns="http://www.w3.org/2000/svg"
         />

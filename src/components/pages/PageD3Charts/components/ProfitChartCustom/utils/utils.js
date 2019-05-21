@@ -105,3 +105,18 @@ export function setAnimatedViewToSvgPath(pathNode = {}) {
   // Go!
   path.style.strokeDashoffset = "0";
 }
+
+/**
+ * Generates random id
+ * https://gist.github.com/6174/6062387
+ */
+export function getRandomId() {
+  return (
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15)
+  );
+}
