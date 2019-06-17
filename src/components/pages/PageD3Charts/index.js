@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./d3-charts-page.module.scss";
-import ProfitChartCustom from "./components/ProfitChartCustom";
+import ProfitChartCustom from "./components/ProfitChartCustom/index.tsx";
 
 class PageD3Charts extends React.Component {
   render() {
