@@ -100,9 +100,6 @@
     "lint": "eslint src",
     "lint-fix": "eslint --fix src"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
