@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as d3 from "d3";
-import "./style.scss";
-import { data } from "./fakeApi";
+import * as React from 'react';
+import * as d3 from 'd3';
+import './style.scss';
+import { data } from './fakeApi';
 import {
   getRandomId,
   setAnimatedViewToSvgPath,
