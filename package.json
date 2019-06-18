@@ -96,7 +96,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "prettier": "prettier --write \"**/*.js\"",
+    "prettier": "prettier --write \"**/*.{js,jsx}\"",
+    "prettier-ts": "prettier --parser typescript --write \"src/**/*.{ts,tsx}\"",
     "lint": "eslint src",
     "lint-fix": "eslint --fix src"
   },
@@ -109,6 +110,7 @@
     "*.js": [
       "npm run lint-fix",
       "npm run prettier",
+      "npm run prettier-ts",
       "git add"
     ]
   },
