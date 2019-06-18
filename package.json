@@ -96,19 +96,12 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "prettier": "prettier --write \"**/*.js\"",
     "lint": "eslint src",
     "lint-fix": "eslint --fix src"
   },
   "eslintConfig": {
-    "plugins": [
-      "prettier"
-    ],
-    "extends": "react-app",
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
+    "extends": "react-app"
   },
   "husky": {
     "hooks": {
@@ -118,6 +111,7 @@
   "lint-staged": {
     "*.js": [
       "npm run lint-fix",
+      "npm run prettier",
       "git add"
     ]
   },
