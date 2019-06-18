@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ModalContent from "../ModalContent";
-import "../../app-modal.scss";
-import { CSSTransition } from "react-transition-group";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ModalContent from '../ModalContent';
+import '../../app-modal.scss';
+import { CSSTransition } from 'react-transition-group';
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -29,18 +29,18 @@ class Modal extends React.Component {
     return ReactDOM.createPortal(
       <CSSTransition
         in={show}
-        key={"app-modal"}
+        key={'app-modal'}
         timeout={200}
         classNames="app-modal"
         appear
         unmountOnExit
       >
         {state => (
-          <div className={"app-modal"}>
-            <div className={"app-modal__window"}>
+          <div className={'app-modal'}>
+            <div className={'app-modal__window'}>
               <CSSTransition
-                in={state === "entered"}
-                key={"app-modal__window"}
+                in={state === 'entered'}
+                key={'app-modal__window'}
                 timeout={100}
                 classNames="app-modal__window"
                 appear
@@ -52,7 +52,7 @@ class Modal extends React.Component {
           </div>
         )}
       </CSSTransition>,
-      document.body
+      document.body,
     );
   }
 }

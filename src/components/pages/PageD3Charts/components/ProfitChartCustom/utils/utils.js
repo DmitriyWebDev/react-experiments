@@ -2,9 +2,9 @@ export function getOldDaysChartLines(
   xAxisOffsets,
   oldDays,
   chartHeight,
-  maxProductCount
+  maxProductCount,
 ) {
-  let result = "";
+  let result = '';
   const percentScale = chartHeight / maxProductCount;
 
   for (let i = 0; i < oldDays.length; i++) {
@@ -13,7 +13,7 @@ export function getOldDaysChartLines(
     const yAxisOffset = countVerticalOffset(
       dayProductsCount,
       chartHeight,
-      percentScale
+      percentScale,
     );
     result += i === 0 ? `M ` : ` L `;
     result += `${xAxisOffset},${yAxisOffset}`;
@@ -57,7 +57,8 @@ export function countDaysLeftOffsets(lines, chartWidth) {
     }
     const onePercent = lineOffsetStep / 100;
     result.push(
-      (Math.ceil(result[i - 1] + lineOffsetStep + onePercent * bar) / 100) * 100
+      (Math.ceil(result[i - 1] + lineOffsetStep + onePercent * bar) / 100) *
+        100,
     );
   }
 
@@ -70,7 +71,7 @@ export function computeDayHeight(days, chartHeight, dayIndex) {
       prevVal.productsCount > currVal.productsCount
         ? prevVal.productsCount
         : currVal.productsCount,
-    0
+    0,
   );
 
   const percent = maxProductsCount / 100;
@@ -81,17 +82,17 @@ export function computeDayHeight(days, chartHeight, dayIndex) {
 }
 
 export function setAnimatedViewToSvgPath(pathNode = {}) {
-  if (typeof pathNode.getTotalLength === "undefined") return false;
+  if (typeof pathNode.getTotalLength === 'undefined') return false;
 
   // Set animated view for <path />
   const path = pathNode;
   const length = path.getTotalLength();
 
   // Clear any previous transition
-  path.style.transition = path.style.WebkitTransition = "none";
+  path.style.transition = path.style.WebkitTransition = 'none';
 
   // Set up the starting positions
-  path.style.strokeDasharray = length + " " + length;
+  path.style.strokeDasharray = length + ' ' + length;
   path.style.strokeDashoffset = length;
 
   // Trigger a layout so styles are calculated & the browser
@@ -100,10 +101,10 @@ export function setAnimatedViewToSvgPath(pathNode = {}) {
 
   // Define our transition
   path.style.transition = path.style.WebkitTransition =
-    "stroke-dashoffset 2s ease-in-out";
+    'stroke-dashoffset 2s ease-in-out';
 
   // Go!
-  path.style.strokeDashoffset = "0";
+  path.style.strokeDashoffset = '0';
 }
 
 /**

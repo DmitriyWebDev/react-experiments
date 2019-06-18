@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./style.scss";
-import cn from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
+import cn from 'classnames';
 
 export class TextListShower extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export class TextListShower extends React.Component {
 
     this.state = {
       listIsOpen: false,
-      listDirectionIsTop: false
+      listDirectionIsTop: false,
     };
 
     this.contentRef = React.createRef();
@@ -20,11 +20,11 @@ export class TextListShower extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("click", this.handleClickOutside);
+    window.addEventListener('click', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("click", this.handleClickOutside);
+    window.removeEventListener('click', this.handleClickOutside);
   }
 
   handleClick() {
@@ -37,12 +37,12 @@ export class TextListShower extends React.Component {
     const listDirectionIsTop = checkListDirectionIsTop(
       contentNodeTopOffset,
       listHeight,
-      documentHeight
+      documentHeight,
     );
 
     this.setState({
       listIsOpen: true,
-      listDirectionIsTop
+      listDirectionIsTop,
     });
   }
 
@@ -76,8 +76,8 @@ export class TextListShower extends React.Component {
 
     if (textLinesList.length === 1) {
       return (
-        <div className={"textListShower textListShower_singleLine"}>
-          <div className={"textListShower__content"}>{textLinesList[0]}</div>
+        <div className={'textListShower textListShower_singleLine'}>
+          <div className={'textListShower__content'}>{textLinesList[0]}</div>
         </div>
       );
     }
@@ -85,26 +85,26 @@ export class TextListShower extends React.Component {
     const rootClass = cn({
       textListShower: true,
       textListShower_isOpen: this.state.listIsOpen,
-      textListShower_dir_top: this.state.listDirectionIsTop
+      textListShower_dir_top: this.state.listDirectionIsTop,
     });
 
     return (
       <div className={rootClass}>
         <div
-          className={"textListShower__content"}
+          className={'textListShower__content'}
           ref={this.contentRef}
           onClick={this.handleClick}
         >
           {textLinesList[0]}...
         </div>
         <div
-          className={"textListShower__list"}
+          className={'textListShower__list'}
           ref={this.listRef}
           style={{ maxHeight: listMaxHeight }}
         >
           {textLinesList.map((item, index, list) => {
             return (
-              <div key={index} className={"textListShower__list-item"}>
+              <div key={index} className={'textListShower__list-item'}>
                 {item}
               </div>
             );
@@ -119,12 +119,12 @@ export default TextListShower;
 
 TextListShower.propTypes = {
   textLinesList: PropTypes.array,
-  listMaxHeight: PropTypes.number
+  listMaxHeight: PropTypes.number,
 };
 
 TextListShower.defaultProps = {
   textLinesList: [],
-  listMaxHeight: 300
+  listMaxHeight: 300,
 };
 
 // utils
@@ -132,7 +132,7 @@ TextListShower.defaultProps = {
 export const checkListDirectionIsTop = (
   elemTopOffset,
   elemHeight,
-  windowHeight
+  windowHeight,
 ) => {
   return elemTopOffset + elemHeight > windowHeight;
 };

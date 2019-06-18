@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { loadClients } from "../../ducks/clients";
-import { getClientsList } from "../../ducks/clients/selector.js";
-import styles from "./component.module.scss";
-import "./stye.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadClients } from '../../ducks/clients';
+import { getClientsList } from '../../ducks/clients/selector.js';
+import styles from './component.module.scss';
+import './stye.scss';
 
 // special for react-motion
-import { StaggeredMotion, spring } from "react-motion";
-import range from "lodash.range";
+import { StaggeredMotion, spring } from 'react-motion';
+import range from 'lodash.range';
 
 class ClientsList extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ClientsList extends React.Component {
     // `prevStyles` is the interpolated value of the last tick
     const endValue = prevStyles.map((_, i) => {
       return {
-        marginLeft: spring(0, { stiffness: 90 + i * 15, damping: 26 })
+        marginLeft: spring(0, { stiffness: 90 + i * 15, damping: 26 }),
       };
     });
     return endValue.reverse();
@@ -36,7 +36,7 @@ class ClientsList extends React.Component {
   render() {
     const { clientsUrl, clientsList, clientsLoaded } = this.props;
 
-    if (!clientsLoaded) return "Loading...";
+    if (!clientsLoaded) return 'Loading...';
 
     return (
       <div>
@@ -44,23 +44,23 @@ class ClientsList extends React.Component {
         {clientsList.size}
         <StaggeredMotion
           defaultStyles={range(clientsList.size).map(() => ({
-            marginLeft: -300
+            marginLeft: -300,
           }))}
           styles={this.getStyles}
         >
           {clientsStyles => (
-            <ul className={styles["clints-list"]}>
+            <ul className={styles['clints-list']}>
               {clientsStyles.map(function(item, index, arr) {
                 const { id, name } = clientsList.get(index);
                 return (
                   <li
                     key={index}
                     style={{
-                      marginLeft: `${item.marginLeft}px`
+                      marginLeft: `${item.marginLeft}px`,
                     }}
                   >
                     <Link
-                      className={styles["clints-list__item"]}
+                      className={styles['clints-list__item']}
                       to={`${clientsUrl}/${id}`}
                     >
                       {name}
@@ -81,11 +81,11 @@ const mapStateToProps = state => {
   return {
     clientsLoading,
     clientsLoaded,
-    clientsList: getClientsList(state.clients)
+    clientsList: getClientsList(state.clients),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { loadClients }
+  { loadClients },
 )(ClientsList);

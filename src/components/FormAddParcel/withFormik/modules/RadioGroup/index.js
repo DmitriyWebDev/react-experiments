@@ -1,6 +1,6 @@
-import React from "react";
-import classNames from "classnames";
-import InputFeedback from "../InputFeedback";
+import React from 'react';
+import classNames from 'classnames';
+import InputFeedback from '../InputFeedback';
 
 // Radio group
 const RadioButtonGroup = ({
@@ -10,15 +10,15 @@ const RadioButtonGroup = ({
   id,
   label,
   className,
-  children
+  children,
 }) => {
   const classes = classNames(
-    "input-field",
+    'input-field',
     {
-      "is-success": value || (!error && touched), // handle prefilled or user-filled
-      "is-error": !!error && touched
+      'is-success': value || (!error && touched), // handle prefilled or user-filled
+      'is-error': !!error && touched,
     },
-    className
+    className,
   );
 
   return (

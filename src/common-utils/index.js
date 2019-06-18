@@ -3,14 +3,14 @@
  * https://gist.github.com/DiegoSalazar/4075533
  * @param value {string} - input string
  */
-export function isValidCreditCardNumber(value = "") {
+export function isValidCreditCardNumber(value = '') {
   // accept only digits, dashes or spaces
   if (/[^0-9-\s]+/.test(value)) return false;
 
   // The Luhn Algorithm. It's so pretty.
   let nCheck = 0;
   let bEven = false;
-  value = value.replace(/\D/g, "");
+  value = value.replace(/\D/g, '');
 
   for (let n = value.length - 1; n >= 0; n--) {
     let cDigit = value.charAt(n),
@@ -84,20 +84,20 @@ export function getDeclencionNounOfNumeric(number, titles) {
  * Returns (Number) browser scrollbar width in pixels
  */
 export function getScrollbarWidth() {
-  const outer = document.createElement("div");
-  outer.style.visibility = "hidden";
-  outer.style.width = "100px";
-  outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.width = '100px';
+  outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
 
   document.body.appendChild(outer);
 
   const widthNoScroll = outer.offsetWidth;
   // force scrollbars
-  outer.style.overflow = "scroll";
+  outer.style.overflow = 'scroll';
 
   // add innerdiv
-  const inner = document.createElement("div");
-  inner.style.width = "100%";
+  const inner = document.createElement('div');
+  inner.style.width = '100%';
   outer.appendChild(inner);
 
   const widthWithScroll = inner.offsetWidth;

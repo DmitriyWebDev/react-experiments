@@ -1,4 +1,4 @@
-import { List, Map } from "immutable";
+import { List, Map } from 'immutable';
 
 export const getListFromMap = (immutableMap = Map({})) => {
   const result = [];

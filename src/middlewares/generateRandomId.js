@@ -1,4 +1,4 @@
-import { getRandomId } from "common-utils";
+import { getRandomId } from 'common-utils';
 export default store => next => action => {
   if (action.generateId) {
     const { generateId, payload, ...rest } = action;
@@ -7,8 +7,8 @@ export default store => next => action => {
       ...rest,
       payload: {
         ...payload,
-        randomId: getRandomId()
-      }
+        randomId: getRandomId(),
+      },
     });
   }
   return next(action);

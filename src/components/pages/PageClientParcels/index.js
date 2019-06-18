@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class PageClientParcels extends React.Component {
   render() {
     const { match } = this.props;
     console.log(match);
     return (
-      <div className={"page_animated"}>
+      <div className={'page_animated'}>
         Parcels list of client
         <br />
         <ul>

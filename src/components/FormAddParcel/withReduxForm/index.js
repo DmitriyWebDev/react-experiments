@@ -1,34 +1,34 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import {
   getValidFloatString,
-  checkFloatStringIsInvalid
-} from "common-utils/prepareNumericValues";
-import { loadClients } from "../../../ducks/clients";
-import { addParcel } from "../../../ducks/parcels";
-import { getClientsOptionsList } from "../selector";
-import CheckboxGroup from "./modules/CheckboxGroup";
+  checkFloatStringIsInvalid,
+} from 'common-utils/prepareNumericValues';
+import { loadClients } from '../../../ducks/clients';
+import { addParcel } from '../../../ducks/parcels';
+import { getClientsOptionsList } from '../selector';
+import CheckboxGroup from './modules/CheckboxGroup';
 
 const validate = values => {
   const errors = {};
 
   if (!values.title) {
-    errors.title = "Укажите название";
+    errors.title = 'Укажите название';
   }
 
   if (!values.weight) {
-    errors.weight = "Укажите вес";
+    errors.weight = 'Укажите вес';
   } else if (checkFloatStringIsInvalid(values.weight)) {
-    errors.weight = "Вес указан неверно";
+    errors.weight = 'Вес указан неверно';
   }
 
   if (!values.clientId) {
-    errors.clientId = "Выберите клиента";
+    errors.clientId = 'Выберите клиента';
   }
 
   if (!values.parcelAttributes || !values.parcelAttributes.length) {
-    errors.parcelAttributes = "Выберите особенность";
+    errors.parcelAttributes = 'Выберите особенность';
   }
 
   return errors;
@@ -46,7 +46,7 @@ const renderField = ({
   input,
   label,
   type,
-  meta: { touched, error, warning }
+  meta: { touched, error, warning },
 }) => {
   return (
     <div>
@@ -121,10 +121,10 @@ class SyncValidationForm extends React.Component {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     // хрупкая, тяжёлая, крупногабаритная, новогодняя
     const options = [
-      { label: "хрупкая", value: "хрупкая" },
-      { label: "тяжёлая", value: "тяжёлая" },
-      { label: "крупногабаритная", value: "крупногабаритная" },
-      { label: "новогодняя", value: "новогодняя" }
+      { label: 'хрупкая', value: 'хрупкая' },
+      { label: 'тяжёлая', value: 'тяжёлая' },
+      { label: 'крупногабаритная', value: 'крупногабаритная' },
+      { label: 'новогодняя', value: 'новогодняя' },
     ];
     // console.log('render')
     return (
@@ -153,7 +153,7 @@ class SyncValidationForm extends React.Component {
                 component="input"
                 type="radio"
                 value="1"
-              />{" "}
+              />{' '}
               1
             </label>
             <label>
@@ -162,7 +162,7 @@ class SyncValidationForm extends React.Component {
                 component="input"
                 type="radio"
                 value="2"
-              />{" "}
+              />{' '}
               2
             </label>
           </div>
@@ -193,19 +193,19 @@ const mapStateToProps = state => {
   return {
     clientsLoading,
     clientsLoaded,
-    clientsOptions: getClientsOptionsList(state.clients)
+    clientsOptions: getClientsOptionsList(state.clients),
   };
 };
 
 let Form = SyncValidationForm;
 Form = connect(
   mapStateToProps,
-  { loadClients, addParcel }
+  { loadClients, addParcel },
 )(Form);
 
 export default reduxForm({
   destroyOnUnmount: false,
-  form: "addParcel", // a unique identifier for this form
+  form: 'addParcel', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
-  warn // <--- warning function given to redux-form
+  warn, // <--- warning function given to redux-form
 })(Form);

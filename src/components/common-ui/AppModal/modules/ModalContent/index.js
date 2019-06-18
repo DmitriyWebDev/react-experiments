@@ -1,5 +1,5 @@
-import React from "react";
-import { getScrollbarWidth } from "common-utils";
+import React from 'react';
+import { getScrollbarWidth } from 'common-utils';
 
 class ModalContent extends React.Component {
   constructor(props) {
@@ -10,15 +10,15 @@ class ModalContent extends React.Component {
 
   componentDidMount() {
     const body = document.body;
-    body.style.overflow = "hidden";
+    body.style.overflow = 'hidden';
     body.style.paddingRight = `${getScrollbarWidth()}px`;
   }
 
   componentWillUnmount() {
     const body = document.body;
     setTimeout(() => {
-      body.style.overflow = "";
-      body.style.paddingRight = "";
+      body.style.overflow = '';
+      body.style.paddingRight = '';
     }, 200);
   }
 
@@ -35,10 +35,10 @@ class ModalContent extends React.Component {
     const { children } = this.props;
     return (
       <div
-        className={"app-modal__window-inner-wrap"}
+        className={'app-modal__window-inner-wrap'}
         onClick={this.handleModalOverlayClick}
       >
-        <div ref={this.modalContentRef} className={"app-modal__window-inner"}>
+        <div ref={this.modalContentRef} className={'app-modal__window-inner'}>
           {children}
         </div>
       </div>

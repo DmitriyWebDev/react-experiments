@@ -1,10 +1,10 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 // Input feedback
 const InputFeedback = ({ error }) => {
   return error ? (
-    <div className={classNames("input-feedback")}>{error}</div>
+    <div className={classNames('input-feedback')}>{error}</div>
   ) : null;
 };
 

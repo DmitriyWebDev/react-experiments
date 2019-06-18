@@ -1,9 +1,9 @@
-import thunk from "redux-thunk";
-import rootReducer from "./root-reducer";
-import randomId from "../middlewares/generateRandomId";
-import { createBrowserHistory } from "history";
-import { applyMiddleware, compose, createStore } from "redux";
-import { routerMiddleware } from "connected-react-router";
+import thunk from 'redux-thunk';
+import rootReducer from './root-reducer';
+import randomId from '../middlewares/generateRandomId';
+import { createBrowserHistory } from 'history';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,9 +17,9 @@ export default function configureStore(preloadedState = {}) {
       applyMiddleware(
         routerMiddleware(history), // for dispatching history actions
         thunk,
-        randomId
-      )
-    )
+        randomId,
+      ),
+    ),
   );
 
   return store;

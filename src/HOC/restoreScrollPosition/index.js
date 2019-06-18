@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const restoreScrollPosition = WrappedComponent => {
   return class RestoreScrollPosition extends React.Component {
@@ -8,12 +8,12 @@ const restoreScrollPosition = WrappedComponent => {
       this.saveScrollPosition = this.saveScrollPosition.bind(this);
       this.canRestoreScrollPosition = this.canRestoreScrollPosition.bind(this);
       this.setComponentNameForScrollRestore = this.setComponentNameForScrollRestore.bind(
-        this
+        this,
       );
       this.state = {
-        storageKeyPrefix: "restoreScroll",
+        storageKeyPrefix: 'restoreScroll',
         scrollRestored: false,
-        componentName: ""
+        componentName: '',
       };
     }
 
@@ -32,18 +32,18 @@ const restoreScrollPosition = WrappedComponent => {
       const savedScrollPosition = this.canRestoreScrollPosition();
 
       if (!savedScrollPosition) {
-        console.log("Can not restore scroll ---");
+        console.log('Can not restore scroll ---');
         return null;
       }
 
       if (scrollRestored && savedScrollPosition) return null;
 
       this.setState({
-        scrollRestored: true
+        scrollRestored: true,
       });
 
       window.scrollTo(0, savedScrollPosition);
-      console.log("Scroll restored", savedScrollPosition);
+      console.log('Scroll restored', savedScrollPosition);
     }
 
     componentWillUnmount() {
@@ -55,7 +55,7 @@ const restoreScrollPosition = WrappedComponent => {
     canRestoreScrollPosition() {
       const { componentName, storageKeyPrefix } = this.state;
       const scrollData = sessionStorage.getItem(
-        `${storageKeyPrefix}_${componentName}`
+        `${storageKeyPrefix}_${componentName}`,
       );
       return scrollData !== null ? Number(scrollData) : false;
     }
@@ -74,7 +74,7 @@ const restoreScrollPosition = WrappedComponent => {
       console.log(`Restore scroll for component - ${componentName}`);
       if (componentName) {
         this.setState({
-          componentName
+          componentName,
         });
       }
     }

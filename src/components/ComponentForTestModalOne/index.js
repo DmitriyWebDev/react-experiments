@@ -1,18 +1,18 @@
-import React from "react";
-import { openModal, closeModal } from "../../ducks/modals";
-import { connect } from "react-redux";
+import React from 'react';
+import { openModal, closeModal } from '../../ducks/modals';
+import { connect } from 'react-redux';
 import {
   Modal as AppModal,
   ModalHeader,
   ModalBody,
-  ModalFooter
-} from "../common-ui/AppModal";
+  ModalFooter,
+} from '../common-ui/AppModal';
 
 class ComponentForTestModalOne extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalKey: "modal-example-1"
+      modalKey: 'modal-example-1',
     };
     this.openModalWindow = this.openModalWindow.bind(this);
     this.closeModalWindow = this.closeModalWindow.bind(this);
@@ -56,12 +56,12 @@ const mapStateFromProps = state => {
   return {
     modalState: {
       showModal,
-      modalKey
-    }
+      modalKey,
+    },
   };
 };
 
 export default connect(
   mapStateFromProps,
-  { openModal, closeModal }
+  { openModal, closeModal },
 )(ComponentForTestModalOne);

@@ -2,8 +2,8 @@
 // https://github.com/erikras/redux-form/issues/1037
 // https://github.com/erikras/redux-form/issues/1037#issuecomment-310045055
 
-import React, { Component } from "react";
-import { Field } from "redux-form";
+import React, { Component } from 'react';
+import { Field } from 'redux-form';
 // import PropTypes from 'prop-types';
 
 export default class CheckboxGroup extends Component {

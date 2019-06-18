@@ -1,26 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
-import LanguageSwitcher from "../LanguageSwitcher";
-import Translator from "../Translator";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import LanguageSwitcher from '../LanguageSwitcher';
+import Translator from '../Translator';
 
 class TopMenu extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      fixedPosition: false
+      fixedPosition: false,
     };
     this.getScrollPosition = this.getScrollPosition.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll() {
@@ -29,12 +29,12 @@ class TopMenu extends React.Component {
     if (scrolled > 0 && !fixedPosition) {
       // console.log('set menu fixedPosition true')
       this.setState({
-        fixedPosition: true
+        fixedPosition: true,
       });
     } else if (scrolled === 0 && fixedPosition) {
       // console.log('set menu fixedPosition false')
       this.setState({
-        fixedPosition: false
+        fixedPosition: false,
       });
     }
   }
@@ -47,7 +47,7 @@ class TopMenu extends React.Component {
     const { fixedPosition } = this.state;
     const headerClass = classNames({
       header: true,
-      header_fixed: fixedPosition
+      header_fixed: fixedPosition,
     });
     return (
       <div className={headerClass}>
@@ -78,7 +78,7 @@ class TopMenu extends React.Component {
             </Link>
           </li>
         </ul>
-        <div className={"header__lang-switcher"}>
+        <div className={'header__lang-switcher'}>
           <LanguageSwitcher />
         </div>
       </div>

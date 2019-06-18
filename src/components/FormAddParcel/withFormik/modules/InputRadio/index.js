@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 // Radio input
 const RadioButton = ({
@@ -19,7 +19,7 @@ const RadioButton = ({
         checked={id === value}
         onChange={onChange}
         onBlur={onBlur}
-        className={classNames("radio-button")}
+        className={classNames('radio-button')}
         {...props}
       />
       <label htmlFor={id}>{label}</label>

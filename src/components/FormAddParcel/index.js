@@ -1,37 +1,37 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   getValidFloatString,
-  checkFloatStringIsInvalid
-} from "common-utils/prepareNumericValues";
-import { loadClients } from "../../ducks/clients";
-import { addParcel } from "../../ducks/parcels";
-import { toast } from "react-toastify";
-import { getClientsOptionsList } from "./selector";
-import classNames from "classnames";
+  checkFloatStringIsInvalid,
+} from 'common-utils/prepareNumericValues';
+import { loadClients } from '../../ducks/clients';
+import { addParcel } from '../../ducks/parcels';
+import { toast } from 'react-toastify';
+import { getClientsOptionsList } from './selector';
+import classNames from 'classnames';
 
 class FormAddParcel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: {
-        value: "",
+        value: '',
         invalid: true,
         activated: false,
-        validationErrorMsg: "Укажите название"
+        validationErrorMsg: 'Укажите название',
       },
       weight: {
-        value: "",
+        value: '',
         invalid: true,
-        activated: false
+        activated: false,
       },
-      clientId: "",
-      parcelType: "1", // 1,2,3,4
+      clientId: '',
+      parcelType: '1', // 1,2,3,4
       parcelAttributes: {
         value: {}, // хрупкая, тяжёлая, крупногабаритная, новогодняя
         invalid: true,
-        activated: false
-      }
+        activated: false,
+      },
     };
 
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -39,7 +39,7 @@ class FormAddParcel extends React.Component {
     this.handleChangeClientId = this.handleChangeClientId.bind(this);
     this.handleChangeParcelType = this.handleChangeParcelType.bind(this);
     this.handleChangeParcelAttributes = this.handleChangeParcelAttributes.bind(
-      this
+      this,
     );
 
     this.renderTitleValidationMsg = this.renderTitleValidationMsg.bind(this);
@@ -64,15 +64,15 @@ class FormAddParcel extends React.Component {
     const value = event.target.value;
     const fieldVal = {
       ...this.state.title,
-      activated: true
+      activated: true,
     };
     fieldVal.value = value;
     fieldVal.invalid = value.trim().length <= 3 || value.trim().length >= 11;
-    fieldVal.validationErrorMsg = "Укажите название";
+    fieldVal.validationErrorMsg = 'Укажите название';
     if (value.trim().length <= 3) {
-      fieldVal.validationErrorMsg = "Нужно более 3-x символов";
+      fieldVal.validationErrorMsg = 'Нужно более 3-x символов';
     } else if (value.trim().length >= 11) {
-      fieldVal.validationErrorMsg = "Нужно менее 11-ти символов";
+      fieldVal.validationErrorMsg = 'Нужно менее 11-ти символов';
     }
     this.setState({ title: fieldVal });
   }
@@ -81,7 +81,7 @@ class FormAddParcel extends React.Component {
     const value = event.target.value;
     const fieldVal = {
       ...this.state.weight,
-      activated: true
+      activated: true,
     };
     fieldVal.value = getValidFloatString(value);
     fieldVal.invalid = checkFloatStringIsInvalid(fieldVal.value);
@@ -100,10 +100,10 @@ class FormAddParcel extends React.Component {
     const value = event.target.value;
     const checkedAttrs = { ...this.state.parcelAttributes };
 
-    if (typeof checkedAttrs.value[`${value}`] !== "undefined") {
+    if (typeof checkedAttrs.value[`${value}`] !== 'undefined') {
       delete checkedAttrs.value[`${value}`];
     } else {
-      checkedAttrs.value[`${value}`] = "";
+      checkedAttrs.value[`${value}`] = '';
     }
 
     checkedAttrs.invalid = Object.keys(checkedAttrs.value).length === 0;
@@ -118,13 +118,13 @@ class FormAddParcel extends React.Component {
   validateForm() {
     const result = {
       success: true,
-      errors: []
+      errors: [],
     };
 
     const { title, weight } = this.state;
 
-    if (title.invalid) result.errors.push("Не указано название");
-    if (weight.invalid) result.errors.push("Не указан вес");
+    if (title.invalid) result.errors.push('Не указано название');
+    if (weight.invalid) result.errors.push('Не указан вес');
 
     if (result.errors.length) {
       result.success = false;
@@ -138,39 +138,39 @@ class FormAddParcel extends React.Component {
     this.setState({
       title: {
         ...title,
-        activated: true
+        activated: true,
       },
       weight: {
         ...weight,
-        activated: true
+        activated: true,
       },
       parcelAttributes: {
         ...parcelAttributes,
-        activated: true
-      }
+        activated: true,
+      },
     });
   }
 
   resetForm() {
     this.setState({
       title: {
-        value: "",
+        value: '',
         invalid: true,
         activated: false,
-        validationErrorMsg: "Укажите название"
+        validationErrorMsg: 'Укажите название',
       },
       weight: {
-        value: "",
+        value: '',
         invalid: true,
-        activated: false
+        activated: false,
       },
-      clientId: "",
-      parcelType: "1", // 1,2,3,4
+      clientId: '',
+      parcelType: '1', // 1,2,3,4
       parcelAttributes: {
         value: {}, // хрупкая, тяжёлая, крупногабаритная, новогодняя
         invalid: true,
-        activated: false
-      }
+        activated: false,
+      },
     });
   }
 
@@ -186,7 +186,7 @@ class FormAddParcel extends React.Component {
       for (let i = 0; i < validationData.errors.length; i++) {
         toast.error(validationData.errors[i], {
           position: toast.POSITION.TOP_RIGHT,
-          autoClose: 2000
+          autoClose: 2000,
         });
       }
       return null;
@@ -194,8 +194,8 @@ class FormAddParcel extends React.Component {
 
     if (!Object.keys(parcelAttributes.value).length) return null;
 
-    if (clientId === "") {
-      alert("Выберите клиента");
+    if (clientId === '') {
+      alert('Выберите клиента');
       return null;
     }
 
@@ -203,7 +203,7 @@ class FormAddParcel extends React.Component {
 
     this.props.addParcel({
       title: title.value,
-      clientId
+      clientId,
     });
 
     this.resetForm();
@@ -220,13 +220,13 @@ class FormAddParcel extends React.Component {
 
     if (title.invalid) {
       return (
-        <div className={"field-validation-msg field-validation-msg_error"}>
+        <div className={'field-validation-msg field-validation-msg_error'}>
           {title.validationErrorMsg}
         </div>
       );
     } else {
       return (
-        <div className={"field-validation-msg field-validation-msg_success"}>
+        <div className={'field-validation-msg field-validation-msg_success'}>
           Название заполнено корректно
         </div>
       );
@@ -242,13 +242,13 @@ class FormAddParcel extends React.Component {
 
     if (weight.invalid) {
       return (
-        <div className={"field-validation-msg field-validation-msg_error"}>
+        <div className={'field-validation-msg field-validation-msg_error'}>
           Укажите вес
         </div>
       );
     } else {
       return (
-        <div className={"field-validation-msg field-validation-msg_success"}>
+        <div className={'field-validation-msg field-validation-msg_success'}>
           Вес указан корректно
         </div>
       );
@@ -284,13 +284,13 @@ class FormAddParcel extends React.Component {
     const { title, weight, parcelAttributes } = this.state;
 
     const titleInputClass = classNames({
-      input_invalid: title.invalid && title.activated
+      input_invalid: title.invalid && title.activated,
     });
     const weightInputClass = classNames({
-      input_invalid: weight.invalid && weight.activated
+      input_invalid: weight.invalid && weight.activated,
     });
     const parcelAttributesClass = classNames({
-      input_invalid: parcelAttributes.invalid && parcelAttributes.activated
+      input_invalid: parcelAttributes.invalid && parcelAttributes.activated,
     });
 
     return (
@@ -328,7 +328,7 @@ class FormAddParcel extends React.Component {
           <input
             type="radio"
             value="1"
-            checked={this.state.parcelType === "1"}
+            checked={this.state.parcelType === '1'}
             onChange={this.handleChangeParcelType}
           />
           Тип 1
@@ -337,7 +337,7 @@ class FormAddParcel extends React.Component {
           <input
             type="radio"
             value="2"
-            checked={this.state.parcelType === "2"}
+            checked={this.state.parcelType === '2'}
             onChange={this.handleChangeParcelType}
           />
           Тип 2
@@ -346,7 +346,7 @@ class FormAddParcel extends React.Component {
           <input
             type="radio"
             value="3"
-            checked={this.state.parcelType === "3"}
+            checked={this.state.parcelType === '3'}
             onChange={this.handleChangeParcelType}
           />
           Тип 3
@@ -355,7 +355,7 @@ class FormAddParcel extends React.Component {
           <input
             type="radio"
             value="4"
-            checked={this.state.parcelType === "4"}
+            checked={this.state.parcelType === '4'}
             onChange={this.handleChangeParcelType}
           />
           Тип 4
@@ -369,8 +369,8 @@ class FormAddParcel extends React.Component {
               type="checkbox"
               value="хрупкая"
               checked={
-                typeof this.state.parcelAttributes.value["хрупкая"] !==
-                "undefined"
+                typeof this.state.parcelAttributes.value['хрупкая'] !==
+                'undefined'
               }
               onChange={this.handleChangeParcelAttributes}
             />
@@ -381,8 +381,8 @@ class FormAddParcel extends React.Component {
               type="checkbox"
               value="тяжёлая"
               checked={
-                typeof this.state.parcelAttributes.value["тяжёлая"] !==
-                "undefined"
+                typeof this.state.parcelAttributes.value['тяжёлая'] !==
+                'undefined'
               }
               onChange={this.handleChangeParcelAttributes}
             />
@@ -393,8 +393,8 @@ class FormAddParcel extends React.Component {
               type="checkbox"
               value="крупногабаритная"
               checked={
-                typeof this.state.parcelAttributes.value["крупногабаритная"] !==
-                "undefined"
+                typeof this.state.parcelAttributes.value['крупногабаритная'] !==
+                'undefined'
               }
               onChange={this.handleChangeParcelAttributes}
             />
@@ -405,8 +405,8 @@ class FormAddParcel extends React.Component {
               type="checkbox"
               value="новогодняя"
               checked={
-                typeof this.state.parcelAttributes.value["новогодняя"] !==
-                "undefined"
+                typeof this.state.parcelAttributes.value['новогодняя'] !==
+                'undefined'
               }
               onChange={this.handleChangeParcelAttributes}
             />
@@ -425,11 +425,11 @@ const mapStateToProps = state => {
   return {
     clientsLoading,
     clientsLoaded,
-    clientsOptions: getClientsOptionsList(state.clients)
+    clientsOptions: getClientsOptionsList(state.clients),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { loadClients, addParcel }
+  { loadClients, addParcel },
 )(FormAddParcel);

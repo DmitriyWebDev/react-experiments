@@ -1,19 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   getValidFloatString,
-  checkFloatStringIsInvalid
-} from "common-utils/prepareNumericValues";
-import { loadClients } from "../../../ducks/clients";
-import { addParcel } from "../../../ducks/parcels";
+  checkFloatStringIsInvalid,
+} from 'common-utils/prepareNumericValues';
+import { loadClients } from '../../../ducks/clients';
+import { addParcel } from '../../../ducks/parcels';
 // import {toast} from 'react-toastify'
-import { getClientsOptionsList } from "../selector";
-import { Formik, Field } from "formik";
+import { getClientsOptionsList } from '../selector';
+import { Formik, Field } from 'formik';
 // import classNames from 'classnames'
-import RadioGroup from "./modules/RadioGroup";
-import InputRadio from "./modules/InputRadio";
-import InputCheckbox from "./modules/InputCheckbox";
-import CheckboxGroup from "./modules/CheckboxGroup";
+import RadioGroup from './modules/RadioGroup';
+import InputRadio from './modules/InputRadio';
+import InputCheckbox from './modules/InputCheckbox';
+import CheckboxGroup from './modules/CheckboxGroup';
 
 class Basic extends React.Component {
   constructor(props) {
@@ -54,58 +54,58 @@ class Basic extends React.Component {
 
   render() {
     function showErrorClass(flag = false) {
-      return flag ? "input_invalid" : "";
+      return flag ? 'input_invalid' : '';
     }
     return (
       <div>
         <Formik
           initialValues={{
-            title: "",
-            weight: "",
-            clientId: "",
-            parcelType: "", // 1,2,3,4
-            parcelAttributes: [] // хрупкая, тяжёлая, крупногабаритная, новогодняя
+            title: '',
+            weight: '',
+            clientId: '',
+            parcelType: '', // 1,2,3,4
+            parcelAttributes: [], // хрупкая, тяжёлая, крупногабаритная, новогодняя
           }}
           validate={values => {
             let errors = {};
 
             if (!values.title) {
-              errors.title = "Укажите название";
+              errors.title = 'Укажите название';
             }
 
             if (!values.weight) {
-              errors.weight = "Укажите вес";
+              errors.weight = 'Укажите вес';
             } else if (checkFloatStringIsInvalid(values.weight)) {
-              errors.weight = "Вес указан невалидно";
+              errors.weight = 'Вес указан невалидно';
             }
 
             if (!values.clientId) {
-              errors.clientId = "Выберите клиента";
+              errors.clientId = 'Выберите клиента';
             }
 
             if (!values.clientId) {
-              errors.clientId = "Выберите клиента";
+              errors.clientId = 'Выберите клиента';
             }
 
             if (!values.parcelType) {
-              errors.parcelType = "Укажите тип посылки";
+              errors.parcelType = 'Укажите тип посылки';
             }
 
             if (!values.parcelAttributes.length) {
-              errors.parcelAttributes = "Укажите особенность посылки";
+              errors.parcelAttributes = 'Укажите особенность посылки';
             }
 
             return errors;
           }}
           onSubmit={(values, actions) => {
-            console.log("onSubmit ---");
+            console.log('onSubmit ---');
             // console.log(actions)
             console.log(values);
             actions.setSubmitting(false);
 
             this.props.addParcel({
               title: values.title,
-              clientId: values.clientId
+              clientId: values.clientId,
             });
 
             actions.resetForm();
@@ -130,7 +130,7 @@ class Basic extends React.Component {
             handleChange,
             handleBlur,
             handleSubmit,
-            isSubmitting
+            isSubmitting,
             /* and other goodies */
           }) => (
             <form onSubmit={handleSubmit}>
@@ -158,7 +158,7 @@ class Basic extends React.Component {
                     const { value } = target;
                     const preparedVal = getValidFloatString(value);
                     const modEvent = {
-                      ...event
+                      ...event,
                     };
                     modEvent.target.value = preparedVal;
                     handleChange(modEvent);
@@ -218,7 +218,7 @@ class Basic extends React.Component {
 
               <div
                 className={showErrorClass(
-                  errors.parcelAttributes && touched.parcelAttributes
+                  errors.parcelAttributes && touched.parcelAttributes,
                 )}
               >
                 <CheckboxGroup
@@ -273,11 +273,11 @@ const mapStateToProps = state => {
   return {
     clientsLoading,
     clientsLoaded,
-    clientsOptions: getClientsOptionsList(state.clients)
+    clientsOptions: getClientsOptionsList(state.clients),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { loadClients, addParcel }
+  { loadClients, addParcel },
 )(Basic);

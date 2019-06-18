@@ -1,26 +1,26 @@
-import { START, SUCCESS, FAIL } from "../../constants-common";
-import { Record, Map } from "immutable";
+import { START, SUCCESS, FAIL } from '../../constants-common';
+import { Record, Map } from 'immutable';
 
 // Actions
-const LOAD = "my-app/clients/LOAD";
+const LOAD = 'my-app/clients/LOAD';
 // const CREATE = 'my-app/clients/CREATE';
 // const UPDATE = 'my-app/clients/UPDATE';
 // const REMOVE = 'my-app/clients/REMOVE';
 
 // State
 const ClientRecord = Record({
-  address: Record({ city: "", street: "" }),
+  address: Record({ city: '', street: '' }),
   age: 0,
-  department: "",
-  gender: "",
-  id: "",
-  name: ""
+  department: '',
+  gender: '',
+  id: '',
+  name: '',
 });
 
 const ReducerRecord = Record({
   clientsLoading: false,
   clientsLoaded: false,
-  clientsMap: Map({})
+  clientsMap: Map({}),
 });
 
 // Reducer
@@ -29,7 +29,7 @@ export default function reducer(state = ReducerRecord(), action = {}) {
 
   switch (type) {
     case LOAD + START: {
-      return state.set("clientsLoading", true);
+      return state.set('clientsLoading', true);
     }
     case LOAD + SUCCESS: {
       const { clients } = payload;
@@ -40,9 +40,9 @@ export default function reducer(state = ReducerRecord(), action = {}) {
       }
 
       return state
-        .set("clientsLoading", false)
-        .set("clientsLoaded", true)
-        .set("clientsMap", Map(clientsMap));
+        .set('clientsLoading', false)
+        .set('clientsLoaded', true)
+        .set('clientsMap', Map(clientsMap));
     }
     default: {
       return state;
@@ -60,10 +60,10 @@ export function loadWidgets() {
 export function loadClients() {
   return function(dispatch) {
     dispatch({ type: LOAD + START });
-    console.log("loadClients()");
+    console.log('loadClients()');
 
     const urlGetClients =
-      "https://gist.githubusercontent.com/bunopus/f48fbb06578003fb521c7c1a54fd906a/raw/e5767c1e7f172c6375f064a9441f2edd57a79f15/test_users.json";
+      'https://gist.githubusercontent.com/bunopus/f48fbb06578003fb521c7c1a54fd906a/raw/e5767c1e7f172c6375f064a9441f2edd57a79f15/test_users.json';
 
     setTimeout(() => {
       // timeout 1 second for Loader show demonstration

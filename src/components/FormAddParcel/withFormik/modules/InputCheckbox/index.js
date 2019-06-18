@@ -1,6 +1,6 @@
-import React from "react";
-import classNames from "classnames";
-import InputFeedback from "../InputFeedback";
+import React from 'react';
+import classNames from 'classnames';
+import InputFeedback from '../InputFeedback';
 
 // Checkbox input
 const Checkbox = ({
@@ -21,7 +21,7 @@ const Checkbox = ({
         checked={value}
         onChange={onChange}
         onBlur={onBlur}
-        className={classNames("radio-button")}
+        className={classNames('radio-button')}
       />
       <label htmlFor={id}>{label}</label>
       {touched[name] && <InputFeedback error={errors[name]} />}

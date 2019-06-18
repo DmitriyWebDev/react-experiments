@@ -1,21 +1,21 @@
-import { Record, Map, List } from "immutable";
+import { Record, Map, List } from 'immutable';
 
 // Actions
-const ADD = "my-app/parcels/ADD";
+const ADD = 'my-app/parcels/ADD';
 // const EDIT   = 'my-app/parcels/EDIT'
 // const REMOVE = 'my-app/parcels/REMOVE'
 
 // State
 const ParcelRecord = Record({
-  id: "",
-  title: "",
-  weight: "",
-  clientId: ""
+  id: '',
+  title: '',
+  weight: '',
+  clientId: '',
 });
 
 const ReducerRecord = Record({
   parcelsMap: Map({}),
-  parcelsByClientId: Map({})
+  parcelsByClientId: Map({}),
 });
 
 // Reducer
@@ -28,8 +28,8 @@ export default function reducer(state = ReducerRecord(), action = {}) {
       const newParcel = ParcelRecord({
         id: randomId,
         title,
-        weight: "",
-        clientId
+        weight: '',
+        clientId,
       });
 
       let clientNewParcels = List([randomId]);
@@ -40,8 +40,8 @@ export default function reducer(state = ReducerRecord(), action = {}) {
       }
 
       return state
-        .setIn(["parcelsMap", randomId], newParcel)
-        .setIn(["parcelsByClientId", clientId], clientNewParcels);
+        .setIn(['parcelsMap', randomId], newParcel)
+        .setIn(['parcelsByClientId', clientId], clientNewParcels);
     }
     default: {
       return state;
@@ -54,7 +54,7 @@ export function addParcel(payload) {
   return {
     type: ADD,
     generateId: true,
-    payload: { ...payload }
+    payload: { ...payload },
   };
 }
 

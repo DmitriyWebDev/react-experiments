@@ -1,5 +1,5 @@
-export const START = "_START";
-export const SUCCESS = "_SUCCESS";
-export const FAIL = "_FAIL";
+export const START = '_START';
+export const SUCCESS = '_SUCCESS';
+export const FAIL = '_FAIL';
 
-export const PARSELS_ROUTE_BASE = "parcels";
+export const PARSELS_ROUTE_BASE = 'parcels';

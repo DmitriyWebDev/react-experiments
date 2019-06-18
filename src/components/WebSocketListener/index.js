@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export class WebSocketListener extends React.Component {
   constructor(props) {
     super(props);
 
     // http://localhost:3000/ or ws://echo.websocket.org/
-    this.wsUri = "ws://localhost:8080/";
+    this.wsUri = 'ws://localhost:8080/';
     this.websocket = null;
 
     this.outputRef = React.createRef();
@@ -35,17 +35,17 @@ export class WebSocketListener extends React.Component {
   }
 
   onOpen(evt) {
-    this.writeToScreen("CONNECTED");
-    this.doSend("WebSocket rocks");
+    this.writeToScreen('CONNECTED');
+    this.doSend('WebSocket rocks');
   }
 
   onClose(evt) {
-    this.writeToScreen("DISCONNECTED");
+    this.writeToScreen('DISCONNECTED');
   }
 
   onMessage(evt) {
     this.writeToScreen(
-      '<span style="color: blue;">RESPONSE: ' + evt.data + "</span>"
+      '<span style="color: blue;">RESPONSE: ' + evt.data + '</span>',
     );
     // this.websocket.close();
   }
@@ -55,13 +55,13 @@ export class WebSocketListener extends React.Component {
   }
 
   doSend(message) {
-    this.writeToScreen("SENT: " + message);
+    this.writeToScreen('SENT: ' + message);
     this.websocket.send(message);
   }
 
   writeToScreen(message) {
-    const pre = document.createElement("p");
-    pre.style.wordWrap = "break-word";
+    const pre = document.createElement('p');
+    pre.style.wordWrap = 'break-word';
     pre.innerHTML = message;
     if (this.outputRef && this.outputRef.current) {
       this.outputRef.current.appendChild(pre);
@@ -80,7 +80,7 @@ export class WebSocketListener extends React.Component {
     return (
       <div>
         WebSocket listener:
-        <div ref={this.outputRef} id={"output"} />
+        <div ref={this.outputRef} id={'output'} />
       </div>
     );
   }

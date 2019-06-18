@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getParcelsList } from "../../ducks/parcels/selector";
-import { PARSELS_ROUTE_BASE } from "constants-common";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { connect } from 'react-redux';
+import { getParcelsList } from '../../ducks/parcels/selector';
+import { PARSELS_ROUTE_BASE } from 'constants-common';
+import { Link } from 'react-router-dom';
 
 class ParcelsList extends React.Component {
   render() {
@@ -26,11 +26,11 @@ class ParcelsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parcelsList: getParcelsList(state.parcels)
+    parcelsList: getParcelsList(state.parcels),
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  {},
 )(ParcelsList);

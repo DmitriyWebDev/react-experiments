@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import styles from "./page.module.scss";
-import FormAddParcel from "../../FormAddParcel";
+import React from 'react';
+import { connect } from 'react-redux';
+import styles from './page.module.scss';
+import FormAddParcel from '../../FormAddParcel';
 // import FormWithFormic from '../../FormAddParcel/withFormik'
-import FormWithReduxForm from "../../FormAddParcel/withReduxForm";
-import ParcelsList from "../../ParcelsList";
-import { addParcel } from "../../../ducks/parcels";
+import FormWithReduxForm from '../../FormAddParcel/withReduxForm';
+import ParcelsList from '../../ParcelsList';
+import { addParcel } from '../../../ducks/parcels';
 
 class PageParcels extends React.Component {
   handleSubmitParcelFormRedux = values => {
@@ -15,21 +15,21 @@ class PageParcels extends React.Component {
     const { title, clientId } = values;
     this.props.addParcel({
       title,
-      clientId
+      clientId,
     });
   };
   render() {
     return (
-      <div className={"page_animated"}>
-        <div className={styles["parcels"]}>
-          <div className={styles["parcels__content"]}>
-            <div className={styles["parcels__list-wrap"]}>
+      <div className={'page_animated'}>
+        <div className={styles['parcels']}>
+          <div className={styles['parcels__content']}>
+            <div className={styles['parcels__list-wrap']}>
               <ParcelsList />
             </div>
-            <div className={styles["parcels__form-wrap"]}>
+            <div className={styles['parcels__form-wrap']}>
               <FormWithReduxForm
                 onSubmit={this.handleSubmitParcelFormRedux}
-                initialValues={{ parcelType: "1" }}
+                initialValues={{ parcelType: '1' }}
               />
               <hr />
               <hr />
@@ -45,5 +45,5 @@ class PageParcels extends React.Component {
 
 export default connect(
   state => state,
-  { addParcel }
+  { addParcel },
 )(PageParcels);

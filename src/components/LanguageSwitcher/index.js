@@ -1,5 +1,5 @@
-import React from "react";
-import { LanguageContext } from "../../contexts/language-context";
+import React from 'react';
+import { LanguageContext } from '../../contexts/language-context';
 // import styled, { css } from 'styled-components'
 
 // Styled components example
@@ -43,7 +43,7 @@ class LanguageSwitcher extends React.Component {
             {/*Button*/}
             {/*</Button>*/}
             {locales.map((item, index, arr) => {
-              const active = currentLang === item ? "(active)" : "";
+              const active = currentLang === item ? '(active)' : '';
               return (
                 <div
                   key={item}

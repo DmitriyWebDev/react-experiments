@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { loadClients } from "../../ducks/clients";
-import { getClientsList } from "../../ducks/clients/selector.js";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import styles from "./component.module.scss";
-import "./stye.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadClients } from '../../ducks/clients';
+import { getClientsList } from '../../ducks/clients/selector.js';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import styles from './component.module.scss';
+import './stye.scss';
 
 class ClientsList extends React.Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class ClientsList extends React.Component {
     const { clientsUrl, clientsList, clientsLoaded } = this.props;
     // console.log(clientsList)
 
-    if (!clientsLoaded) return "Loading...";
+    if (!clientsLoaded) return 'Loading...';
 
     const clientsLinks = clientsList.map(function(item, index, arr) {
       const { id, name } = item;
@@ -32,7 +32,7 @@ class ClientsList extends React.Component {
         >
           <li key={id}>
             <Link
-              className={styles["clints-list__item"]}
+              className={styles['clints-list__item']}
               to={`${clientsUrl}/${id}`}
             >
               {name}
@@ -45,7 +45,7 @@ class ClientsList extends React.Component {
     return (
       <div>
         Clients list:
-        <ul className={styles["clints-list"]}>
+        <ul className={styles['clints-list']}>
           <TransitionGroup>{clientsLinks}</TransitionGroup>
         </ul>
       </div>
@@ -58,11 +58,11 @@ const mapStateToProps = state => {
   return {
     clientsLoading,
     clientsLoaded,
-    clientsList: getClientsList(state.clients)
+    clientsList: getClientsList(state.clients),
   };
 };
 
 export default connect(
   mapStateToProps,
-  { loadClients }
+  { loadClients },
 )(ClientsList);

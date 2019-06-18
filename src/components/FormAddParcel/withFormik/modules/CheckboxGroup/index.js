@@ -1,6 +1,6 @@
-import React from "react";
-import classNames from "classnames";
-import InputFeedback from "../InputFeedback";
+import React from 'react';
+import classNames from 'classnames';
+import InputFeedback from '../InputFeedback';
 
 // Checkbox group
 class CheckboxGroup extends React.Component {
@@ -26,12 +26,12 @@ class CheckboxGroup extends React.Component {
     const { value, error, touched, label, className, children } = this.props;
 
     const classes = classNames(
-      "input-field",
+      'input-field',
       {
-        "is-success": value || (!error && touched), // handle prefilled or user-filled
-        "is-error": !!error && touched
+        'is-success': value || (!error && touched), // handle prefilled or user-filled
+        'is-error': !!error && touched,
       },
-      className
+      className,
     );
 
     return (
@@ -43,8 +43,8 @@ class CheckboxGroup extends React.Component {
               field: {
                 value: value.includes(child.props.id),
                 onChange: this.handleChange,
-                onBlur: this.handleBlur
-              }
+                onBlur: this.handleBlur,
+              },
             });
           })}
           {touched && <InputFeedback error={error} />}
