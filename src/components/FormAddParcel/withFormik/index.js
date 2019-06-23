@@ -67,7 +67,7 @@ class Basic extends React.Component {
             parcelAttributes: [], // хрупкая, тяжёлая, крупногабаритная, новогодняя
           }}
           validate={values => {
-            let errors = {};
+            const errors = {};
 
             if (!values.title) {
               errors.title = 'Укажите название';

@@ -44,7 +44,7 @@ export function countDaysLeftOffsets(lines, chartWidth) {
   result.length = 0;
 
   const foo = chartWidth - countedResult[countedResult.length - 1];
-  let bar = (foo / chartWidth) * 100;
+  const bar = (foo / chartWidth) * 100;
 
   for (let i = 0; i < lines.length; i++) {
     if (i === 0) {

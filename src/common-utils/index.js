@@ -13,8 +13,8 @@ export function isValidCreditCardNumber(value = '') {
   value = value.replace(/\D/g, '');
 
   for (let n = value.length - 1; n >= 0; n--) {
-    let cDigit = value.charAt(n),
-      nDigit = parseInt(cDigit, 10);
+    const cDigit = value.charAt(n);
+    let nDigit = parseInt(cDigit, 10);
 
     if (bEven) {
       if ((nDigit *= 2) > 9) nDigit -= 9;
